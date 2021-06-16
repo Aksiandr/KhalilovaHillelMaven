@@ -13,17 +13,18 @@ public class LoginToEmailChrome {
         System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "//chromedriver.exe");
 
         WebDriver webDriver = new ChromeDriver();
-        webDriver.get("https://mail.google.com/mail");
+        webDriver.get("https://passport.i.ua/login/");
 
-        WebElement emailField = webDriver.findElement(By.cssSelector("#identifierId"));
-        emailField.sendKeys("khaloksa@gmail.com");
-        emailField.submit();
+        WebElement emailField = webDriver.findElement(By.cssSelector("input[name='login']"));
+        emailField.sendKeys("oksanakhalilova@gmail.com");
 
-        WebElement nextButton = webDriver.findElement(By.cssSelector("#identifierNext"));
+        WebElement passwdField = webDriver.findElement(By.cssSelector("input[name='pass']"));
+        passwdField.sendKeys("1992Fkbr1969");
+
+        WebElement nextButton = webDriver.findElement(By.cssSelector("input[type='submit']"));
         nextButton.click();
 
-        //WebElement paswordField = webDriver.findElement(By.cssSelector(""));
-
+        webDriver.close();
 
     }
 }

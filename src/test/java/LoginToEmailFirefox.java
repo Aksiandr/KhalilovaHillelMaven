@@ -14,16 +14,18 @@ public class LoginToEmailFirefox {
         WebDriverManager.firefoxdriver().setup();
 
         WebDriver webDriver = new FirefoxDriver();
-        webDriver.get("https://mail.google.com/mail");
+        webDriver.get("https://passport.i.ua/login/");
 
-        WebElement emailField = webDriver.findElement(By.cssSelector("#identifierId"));
+        WebElement emailField = webDriver.findElement(By.cssSelector("input[name='login']"));
         emailField.sendKeys("oksanakhalilova@gmail.com");
-        emailField.submit();
 
-        WebElement nextButton = webDriver.findElement(By.id("identifierNext"));
+        WebElement passwdField = webDriver.findElement(By.cssSelector("input[name='pass']"));
+        passwdField.sendKeys("1992Fkbr1969");
+
+        WebElement nextButton = webDriver.findElement(By.cssSelector("input[type='submit']"));
         nextButton.click();
 
-        //WebElement paswordField = webDriver.findElement(By.cssSelector(""));
+        webDriver.close();
 
 
     }
