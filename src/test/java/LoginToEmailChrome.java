@@ -10,7 +10,7 @@ public class LoginToEmailChrome {
     @Test
     public void loginToEmailViaChrome() {
 
-        WebDriverManager.chromedriver().setup();
+        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "//chromedriver.exe");
 
         WebDriver webDriver = new ChromeDriver();
         webDriver.get("https://mail.google.com/mail");
