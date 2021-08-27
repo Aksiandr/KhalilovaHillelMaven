@@ -1,19 +1,20 @@
+package maven;
+
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.Test;
 
-public class LoginToEmailFirefox {
+public class LoginToEmailChrome {
 
     @Test
-    public void loginToEmailViaFireFox() {
+    public void loginToEmailViaChrome() {
 
-        WebDriverManager.firefoxdriver().setup();
+        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "//chromedriver.exe");
 
-        WebDriver webDriver = new FirefoxDriver();
+        WebDriver webDriver = new ChromeDriver();
         webDriver.get("https://passport.i.ua/login/");
 
         WebElement emailField = webDriver.findElement(By.cssSelector("input[name='login']"));
@@ -26,7 +27,6 @@ public class LoginToEmailFirefox {
         nextButton.click();
 
         webDriver.close();
-
 
     }
 }
