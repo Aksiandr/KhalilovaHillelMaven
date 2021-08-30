@@ -12,6 +12,32 @@ import java.util.stream.Collectors;
 
 public class SeleniumAdvancedHW17 {
 
+
+    @Test
+    public void testGetListElementIndex() {
+        WebDriverManager.chromedriver().setup();
+
+        WebDriver webDriver = new ChromeDriver();
+        webDriver.get("https://the-internet.herokuapp.com/tables");
+        webDriver.manage().window().maximize();
+
+        List<WebElement> headersElements = webDriver.findElements(By.cssSelector("#table1 tr th"));
+
+        List<String> headers = headersElements.stream().map(WebElement::getText).collect(Collectors.toList());
+        // Answering the question how to get index of list item without using For
+        int lastNameIndex = headers.indexOf("Last Name");
+        System.out.println("The index of last name column is: " + lastNameIndex);
+
+        String lastNameXpath = String.format("//table[1]/tbody/tr/td[%s]", lastNameIndex + 1);
+
+        List<WebElement> lastNamesElements = webDriver.findElements(By.xpath(lastNameXpath));
+        List<String> lastNamesList = lastNamesElements.stream().map(WebElement::getText).collect(Collectors.toList());
+
+        lastNamesList.forEach(System.out::println);
+
+        webDriver.close();
+    }
+
     @Test
     public void testA() {
         WebDriverManager.chromedriver().setup();
@@ -133,28 +159,4 @@ public class SeleniumAdvancedHW17 {
         webDriver.close();
     }
 
-    @Test
-    public void testGetListElementIndex() {
-        WebDriverManager.chromedriver().setup();
-
-        WebDriver webDriver = new ChromeDriver();
-        webDriver.get("https://the-internet.herokuapp.com/tables");
-        webDriver.manage().window().maximize();
-
-        List<WebElement> headersElements = webDriver.findElements(By.cssSelector("#table1 tr th"));
-
-        List<String> headers = headersElements.stream().map(WebElement::getText).collect(Collectors.toList());
-        // Answering the question how to get index of list item without using For
-        int lastNameIndex = headers.indexOf("Last Name");
-        System.out.println("The index of last name column is: " + lastNameIndex);
-
-        String lastNameXpath = String.format("//table[1]/tbody/tr/td[%s]", lastNameIndex + 1);
-
-        List<WebElement> lastNamesElements = webDriver.findElements(By.xpath(lastNameXpath));
-        List<String> lastNamesList = lastNamesElements.stream().map(WebElement::getText).collect(Collectors.toList());
-
-        lastNamesList.forEach(System.out::println);
-
-        webDriver.close();
-    }
 }
